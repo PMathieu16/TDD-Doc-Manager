@@ -16,6 +16,6 @@ Usecases:
 - Supprimer tous les documents ✅
 - Faire des dossiers (Ranger)
 - Deplacer un document ✅
-- Envoyer un document
+- Envoyer un document ✅
 - Telecharger un document ✅
 - Dupliquer un document ✅
