@@ -7,7 +7,8 @@ import {
     findByName, isNotArchived, isNotSigned, isValid, isValidName, moveDocument,
     renameDocument,
     saveDocument,
-    sortDocuments
+    sortDocuments,
+    sendDocument
 } from './index';
 
 describe("Doc Manager",()=>{
@@ -24,6 +25,14 @@ describe("Doc Manager",()=>{
         it("should return array with one element",()=>{
             let doc = createDocument("doc1","content1",new Date(),100,true,"author1",false)
             let documents = [doc]
+
+            expect(findAll(documents)).toEqual(documents)
+        })
+        
+        it("should return array with all docs",()=>{
+            let doc = createDocument("doc1","content1",new Date(),100,true,"author1",false)
+            let doc2 = createDocument("doc2","content2",new Date(),120,true,"author1",false)
+            let documents = [doc,doc2]
 
             expect(findAll(documents)).toEqual(documents)
         })
@@ -185,6 +194,33 @@ describe("Doc Manager",()=>{
             expect(downloadDocument(documents,doc1.id)).toEqual("https://bonne-note.fr/download/"+doc1.id+"/doc1")
         })
     })
+
+
+
+describe('sendDocument', () => {
+    let doc1 = createDocument("doc1","content1",new Date(),100,false,"author1",false)
+
+  it('Should send a document successfully', async () => {
+    expect(sendDocument(doc1, 'recipient1')).toBe('Document sent successfully');
+  });
+
+  it('Should throw an error if the recipient is invalid', async () => {
+    expect(()=>sendDocument(doc1, "")).toThrowError('Invalid recipient');
+    })
+
+  it('Should throw an error if the document title is invalid', async () => {
+    let doc2 = createDocument("","content2",new Date(),100,false,"author1",false)
+
+    expect(()=>sendDocument(doc2, "recipient2")).toThrowError('Invalid document');
+    })
+    
+  it('Should throw an error if the document content is invalid', async () => {
+    let doc2 = createDocument("title2","",new Date(),100,false,"author1",false)
+
+    expect(()=>sendDocument(doc2, "recipient2")).toThrowError('Invalid document');
+    })
+});
+
 
     describe("Throw an error",()=>{
         it("Should return the given doc is invalid",()=>{

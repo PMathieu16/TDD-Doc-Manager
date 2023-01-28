@@ -176,3 +176,20 @@ export const isNotSigned = (doc: Doc) : boolean => {
     if(doc.signed) throw new Error("The given doc is signed")
     return true
 }
+
+
+
+export function sendDocument(doc:Doc, recipient:String) {
+  !doc.name?doc.name = "" : doc.name
+  !doc.content?doc.content = "" : doc.content
+
+  if (!doc || doc.name === "" || doc.content === "") {
+    throw new Error('Invalid document');
+  }
+  if (!recipient || recipient === "") {
+    throw new Error('Invalid recipient');
+  }
+
+  return 'Document sent successfully' ;
+}
+

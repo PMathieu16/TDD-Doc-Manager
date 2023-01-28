@@ -1,9 +1,11 @@
 Bareme:
+
 - TDD -> 100% de code coverage
 - Est-ce que le code est necessaire ?
 - Coherence
 
 Usecases:
+
 - Créer un document ✅
 - Voir la liste de nos documents ✅
 - Enregistrer un document ✅
@@ -14,6 +16,6 @@ Usecases:
 - Supprimer tous les documents ✅
 - Faire des dossiers (Ranger)
 - Deplacer un document ✅
-- Envoyer un document 
+- Envoyer un document
 - Telecharger un document ✅
 - Dupliquer un document ✅
